@@ -1,0 +1,9 @@
+<h1>Listado de libros</h1>
+<!-- <amb-book [titleBook]="title" [authorBook]="author"></amb-book>
+<amb-book [titleBook]="title2" [authorBook]="author2"></amb-book> -->
+<amb-book
+  *ngFor="let book of books"
+  [titleBook]="book.title.value"
+  [authorBook]="book.author"
+  (onDeleteBook)="deleteBook($event)"
+></amb-book>
