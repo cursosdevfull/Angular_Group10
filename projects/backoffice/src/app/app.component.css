@@ -1,0 +1,20 @@
+mat-sidenav-container,
+mat-sidenav-content,
+mat-sidenav {
+  height: 100%;
+}
+
+mat-sidenav {
+  max-width: 280px;
+  min-width: 60px;
+  background-color: rgb(15, 23, 42);
+}
+
+.logo {
+  padding: 20px 24px;
+  color: white;
+  font-size: 20px;
+  font-weight: 300;
+  height: 140px;
+  width: 279px;
+}

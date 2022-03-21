@@ -1,9 +1,13 @@
-<h1>Listado de libros</h1>
-<!-- <amb-book [titleBook]="title" [authorBook]="author"></amb-book>
-<amb-book [titleBook]="title2" [authorBook]="author2"></amb-book> -->
-<amb-book
-  *ngFor="let book of books"
-  [titleBook]="book.title.value"
-  [authorBook]="book.author"
-  (onDeleteBook)="deleteBook($event)"
-></amb-book>
+<mat-sidenav-container>
+  <mat-sidenav [opened]="openSideNav" mode="side">
+    <div class="logo"></div>
+
+    <amb-menu></amb-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    {{ currentDate }}
+    <router-outlet></router-outlet>
+    <!--  <amb-page-login></amb-page-login> -->
+    <button (click)="openSideNav = !openSideNav">Abrir</button>
+  </mat-sidenav-content>
+</mat-sidenav-container>
