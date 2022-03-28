@@ -5,9 +5,7 @@
     <amb-menu></amb-menu>
   </mat-sidenav>
   <mat-sidenav-content>
-    {{ currentDate }}
+    <amb-header></amb-header>
     <router-outlet></router-outlet>
-    <!--  <amb-page-login></amb-page-login> -->
-    <button (click)="openSideNav = !openSideNav">Abrir</button>
   </mat-sidenav-content>
 </mat-sidenav-container>

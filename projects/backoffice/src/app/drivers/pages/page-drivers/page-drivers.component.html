@@ -1,1 +1,9 @@
-<p>page-drivers works!</p>
+<amb-title title="Drivers" icon="dashboard">
+  <button mat-flat-button color="primary">
+    <mat-icon>add</mat-icon>
+    Add
+  </button>
+</amb-title>
+<amb-container>
+  <amb-table [metaData]="metaData" [data]="data" (onChangeSort)="changeSort($event)"></amb-table>
+</amb-container>

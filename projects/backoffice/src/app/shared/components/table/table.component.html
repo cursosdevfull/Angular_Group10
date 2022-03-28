@@ -1,0 +1,27 @@
+<div fxLayout="column">
+  <table
+    mat-table
+    [dataSource]="data"
+    matSort
+    (matSortChange)="changeSort($event)"
+  >
+    <ng-container [matColumnDef]="meta.field" *ngFor="let meta of metaData">
+      <th mat-header-cell *matHeaderCellDef [mat-sort-header]="meta.field">
+        {{ meta.header }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ row[meta.field] }}
+      </td>
+    </ng-container>
+
+    <!--     <ng-container matColumnDef="lastname">
+      <th mat-header-cell *matHeaderCellDef>Lastname</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.lastname }}
+      </td>
+    </ng-container> -->
+
+    <tr mat-header-row *matHeaderRowDef="getFields()"></tr>
+    <tr mat-row *matRowDef="let row; columns: getFields()"></tr>
+  </table>
+</div>
