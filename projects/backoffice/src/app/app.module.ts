@@ -11,6 +11,8 @@ import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AppRoutingModule } from './app-routing.module';
+import { UtilsService } from './helpers/services/utils.service';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -27,8 +29,12 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserAnimationsModule,
     MatSidenavModule,
     AppRoutingModule,
+    MatDialogModule,
   ],
-  providers: [],
+  providers: [
+    // {provide: UtilsService, useClass: UtilsService},
+    UtilsService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

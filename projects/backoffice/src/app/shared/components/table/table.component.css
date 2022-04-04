@@ -1,0 +1,50 @@
+.mat-table {
+  overflow-x: scroll;
+}
+
+.mat-cell,
+.mat-header-cell,
+th.mat-header-cell {
+  word-wrap: break-word;
+  max-width: 300px;
+  display: table-cell;
+  padding: 0 10px !important;
+  line-break: unset;
+  white-space: break-spaces;
+  overflow: hidden;
+  vertical-align: middle;
+  font-size: 14px !important;
+}
+
+.mat-row,
+.mat-header-row {
+  margin: 5px 0;
+}
+
+div.subRow {
+  margin-bottom: 10px;
+}
+
+div.subRow div {
+  margin: 5px 0;
+}
+
+div.headerSubRow {
+  margin-top: 8px;
+}
+
+.headerMain {
+  background-color: #e9e7e7;
+}
+
+.highlightTitle:hover {
+  background-color: #e9e7e7;
+}
+
+strong {
+  font-weight: 300;
+}
+
+.highlight:hover {
+  background-color: #f1eeee;
+}

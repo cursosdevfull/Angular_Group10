@@ -1,7 +1,9 @@
 <div fxLayout="column">
+  <ng-content></ng-content>
   <table
     mat-table
     [dataSource]="data"
+    multiTemplateDataRows
     matSort
     (matSortChange)="changeSort($event)"
   >
@@ -14,14 +16,35 @@
       </td>
     </ng-container>
 
-    <!--     <ng-container matColumnDef="lastname">
-      <th mat-header-cell *matHeaderCellDef>Lastname</th>
-      <td mat-cell *matCellDef="let row">
-        {{ row.lastname }}
+    <ng-container matColumnDef="details">
+      <td mat-cell *matCellDef="let row" colSpan="{{ metaData.length }}">
+        <div fxLayout class="headerSubRow">
+          <strong *ngFor="let el of subMetaData" [fxFlex]="widthColumns">
+            {{ el.header }}
+          </strong>
+        </div>
+        <div fxLayout class="subRow">
+          <div *ngFor="let el of subMetaData" [fxFlex]="widthColumns">
+            {{ row[el.field] }}
+          </div>
+        </div>
       </td>
-    </ng-container> -->
+    </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="getFields()"></tr>
-    <tr mat-row *matRowDef="let row; columns: getFields()"></tr>
+    <tr mat-header-row *matHeaderRowDef="listFields"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: listFields"
+      [ngClass]="{ headerMain: getAdditionalFields().length > 0 }"
+      class="highlightTitle"
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: getAdditionalFields()"
+      [ngStyle]="{
+        display: getAdditionalFields().length > 0 ? 'table-row' : 'none'
+      }"
+      class="highlight"
+    ></tr>
   </table>
 </div>

@@ -11,6 +11,12 @@ export class PageDriversComponent implements OnInit {
   metaData: MetaDataColumn[] = [
     { field: 'name', header: 'Name', sortable: true },
     { field: 'lastname', header: 'Lastname', sortable: true },
+    /*     { field: 'email', header: 'Email', sortable: true },
+    { field: 'phone', header: 'Phone', sortable: true },
+    { field: 'status', header: 'Status', sortable: true }, */
+  ];
+
+  subMetaData: MetaDataColumn[] = [
     { field: 'email', header: 'Email', sortable: true },
     { field: 'phone', header: 'Phone', sortable: true },
     { field: 'status', header: 'Status', sortable: true },

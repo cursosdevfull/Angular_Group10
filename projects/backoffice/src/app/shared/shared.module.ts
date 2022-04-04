@@ -9,9 +9,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { TableComponent } from './components/table/table.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ConfirmComponent } from './components/confirm/confirm.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
-  declarations: [ContainerComponent, TitleComponent, TableComponent],
+  declarations: [
+    ContainerComponent,
+    TitleComponent,
+    TableComponent,
+    ConfirmComponent,
+  ],
   imports: [
     CommonModule,
     MatCardModule,
@@ -20,6 +29,7 @@ import { TableComponent } from './components/table/table.component';
     MatButtonModule,
     MatTableModule,
     MatSortModule,
+    MatDialogModule,
   ],
   exports: [
     MatCardModule,
@@ -28,6 +38,12 @@ import { TableComponent } from './components/table/table.component';
     MatIconModule,
     MatButtonModule,
     TableComponent,
+    MatTableModule,
+    MatTooltipModule,
+    MatDialogModule,
+    ConfirmComponent,
+    MatToolbarModule,
+    FlexLayoutModule,
   ],
 })
 export class SharedModule {}

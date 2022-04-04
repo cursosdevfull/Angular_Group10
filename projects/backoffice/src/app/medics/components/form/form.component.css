@@ -1,0 +1,18 @@
+.form-modal {
+  width: 600px;
+}
+/*
+.form-modal .mat-dialog-container {
+  padding: 0;
+} */
+
+.form-modal .mat-dialog-container {
+  padding: 0 !important;
+}
+
+@media screen and (max-width: 599px) {
+  .form-modal {
+    width: 95%;
+    max-width: 95% !important;
+  }
+}

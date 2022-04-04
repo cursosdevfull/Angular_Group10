@@ -5,5 +5,10 @@
   </button>
 </amb-title>
 <amb-container>
-  <amb-table [metaData]="metaData" [data]="data" (onChangeSort)="changeSort($event)"></amb-table>
+  <amb-table
+    [metaData]="metaData"
+    [subMetaData]="subMetaData"
+    [data]="data"
+    (onChangeSort)="changeSort($event)"
+  ></amb-table>
 </amb-container>
