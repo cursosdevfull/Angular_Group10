@@ -20,6 +20,22 @@ export class PageMedicsComponent extends BaseComponent implements OnInit {
     { id: 2, name: 'Robert', cmp: '3536', age: '50' },
     { id: 3, name: 'John', cmp: '45236', age: '45' },
     { id: 4, name: 'Robert', cmp: '3536', age: '50' },
+    { id: 5, name: 'John', cmp: '45236', age: '45' },
+    { id: 6, name: 'Robert', cmp: '3536', age: '50' },
+    { id: 7, name: 'John', cmp: '45236', age: '45' },
+    { id: 8, name: 'Robert', cmp: '3536', age: '50' },
+    { id: 9, name: 'John', cmp: '45236', age: '45' },
+    { id: 10, name: 'Robert', cmp: '3536', age: '50' },
+    { id: 11, name: 'John', cmp: '45236', age: '45' },
+    { id: 12, name: 'Robert', cmp: '3536', age: '50' },
+    { id: 13, name: 'John', cmp: '45236', age: '45' },
+    { id: 14, name: 'Robert', cmp: '3536', age: '50' },
+    { id: 15, name: 'John', cmp: '45236', age: '45' },
+    { id: 16, name: 'Robert', cmp: '3536', age: '50' },
+    { id: 17, name: 'John', cmp: '45236', age: '45' },
+    { id: 18, name: 'Robert', cmp: '3536', age: '50' },
+    { id: 19, name: 'John', cmp: '45236', age: '45' },
+    { id: 20, name: 'Robert', cmp: '3536', age: '50' },
   ];
 
   constructor(protected override utilsService: UtilsService) {

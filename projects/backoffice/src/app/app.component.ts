@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { BookItem } from './book/domain/book';
 import { Title } from './book/domain/vo/title';
+import { LAYOUT_CONSTANTS } from './config/constants/layout.constant';
+import { ILayout } from './config/interfaces/layout.interface';
+import { InactivityService } from './config/services/inactivity.service';
+import { LayoutService } from './config/services/layout.service';
 
 @Component({
   selector: 'amb-root',
@@ -10,20 +15,32 @@ import { Title } from './book/domain/vo/title';
 export class AppComponent {
   openSideNav = true;
   currentDate = new Date();
+  configLayout: ILayout = LAYOUT_CONSTANTS;
+  startApp = false;
+  timeoutExceeded = false;
 
-  /*  title = 'backoffice';
-  books: BookItem[] = [
-    new BookItem(new Title('The Lord of the Rings'), 'J.R.R. Tolkien'),
-    new BookItem(
-      new Title('The Hobbit: Desolation of Smaug'),
-      'J.R.R. Tolkien'
-    ),
-    new BookItem(new Title('The Catcher in the Rye'), 'J.D. Salinger'),
-    new BookItem(new Title('The Grapes of Wrath'), 'John Steinbeck'),
-  ];*/
+  constructor(
+    private layoutService: LayoutService,
+    private inactivityService: InactivityService,
+    private router: Router
+  ) {
+    //layoutService.gettingConfiguration().subscribe((config) => {
+    layoutService.configuration.subscribe((config: ILayout) => {
+      this.configLayout = config;
+    });
 
-  //deleteBook(idBook: number /* book: BookItem */) {
-  // alert('Book deleted: ' + book.title.value);
-  //this.books.splice(idBook, 1);
-  //}
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        if (event.urlAfterRedirects !== '/' && !this.startApp) {
+          this.startApp = true;
+          this.inactivityService.startWatching();
+        }
+      }
+    });
+
+    this.inactivityService.idleObservable().subscribe((status) => {
+      this.timeoutExceeded = status;
+      console.log('timeout exceeded: ', status);
+    });
+  }
 }

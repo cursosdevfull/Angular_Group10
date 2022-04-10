@@ -1,11 +1,14 @@
 <mat-sidenav-container>
-  <mat-sidenav [opened]="openSideNav" mode="side">
+  <mat-sidenav [opened]="openSideNav" mode="side" *ngIf="configLayout.menu">
     <div class="logo"></div>
 
     <amb-menu></amb-menu>
   </mat-sidenav>
   <mat-sidenav-content>
-    <amb-header></amb-header>
+    <amb-header *ngIf="configLayout.header"></amb-header>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
+<ng-template [ngIf]="timeoutExceeded">
+  <amb-page-lock-screen></amb-page-lock-screen>
+</ng-template>

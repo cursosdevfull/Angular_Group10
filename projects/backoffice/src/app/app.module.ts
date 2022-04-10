@@ -13,6 +13,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { AppRoutingModule } from './app-routing.module';
 import { UtilsService } from './helpers/services/utils.service';
 import { MatDialogModule } from '@angular/material/dialog';
+import { LayoutModule } from './config/modules/layout.module';
+import { LAYOUT_CONSTANTS } from './config/constants/layout.constant';
+import { InactivityModule } from './config/modules/inactivity.module';
+import { INACTIVITY_CONSTANTS } from './config/constants/inactivity.constant';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatSidenavModule,
     AppRoutingModule,
     MatDialogModule,
+    LayoutModule.forRoot(LAYOUT_CONSTANTS),
+    InactivityModule.forRoot(INACTIVITY_CONSTANTS),
   ],
   providers: [
     // {provide: UtilsService, useClass: UtilsService},

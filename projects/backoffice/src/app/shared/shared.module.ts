@@ -13,6 +13,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {
+  PerfectScrollbarConfigInterface,
+  PerfectScrollbarModule,
+  PERFECT_SCROLLBAR_CONFIG,
+} from 'ngx-perfect-scrollbar';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: false,
+};
 
 @NgModule({
   declarations: [
@@ -44,6 +53,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     ConfirmComponent,
     MatToolbarModule,
     FlexLayoutModule,
+    PerfectScrollbarModule,
+  ],
+  providers: [
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
+    },
   ],
 })
 export class SharedModule {}

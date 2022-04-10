@@ -31,7 +31,7 @@
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="listFields"></tr>
+    <tr mat-header-row *matHeaderRowDef="listFields; sticky: true"></tr>
     <tr
       mat-row
       *matRowDef="let row; columns: listFields"

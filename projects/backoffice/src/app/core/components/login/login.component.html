@@ -1,6 +1,43 @@
-{{ currentDate }}
-<form>
-  <input type="text" placeholder="Correo" /><br />
-  <input type="password" placeholder="Contraseña" /><br />
-  <button>Ingresar</button>
+<form fxLayout="column" [formGroup]="formGroup">
+  <h1>Sistema de Historias</h1>
+  <h2>Credenciales</h2>
+  <mat-form-field appearance="outline">
+    <mat-label>Correo</mat-label>
+    <input type="text" matInput formControlName="email" required />
+    <mat-error *ngIf="email?.hasError('required')"
+      >El correo es obligatorio</mat-error
+    >
+    <mat-error *ngIf="email?.hasError('email')"
+      >Debe ingresar un correo válido
+    </mat-error>
+    <mat-error *ngIf="email?.hasError('emailNotAllowed')"
+      >Debe ingresar un correo de la empresa
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Contraseña</mat-label>
+    <input
+      type="password"
+      matInput
+      formControlName="password"
+      required
+      (input)="validateForm()"
+    />
+    <mat-error *ngIf="password?.hasError('required')"
+      >La contraseña es obligaria</mat-error
+    >
+    <mat-error
+      *ngIf="password?.hasError('minlength') || password?.hasError('maxlength')"
+      >La contraseña debe estar entre 3 y 20 caracteres</mat-error
+    >
+  </mat-form-field>
+  <button
+    mat-raised-button
+    color="primary"
+    type="button"
+    (click)="login()"
+    [disabled]="formGroup.invalid"
+  >
+    Ingresar
+  </button>
 </form>
