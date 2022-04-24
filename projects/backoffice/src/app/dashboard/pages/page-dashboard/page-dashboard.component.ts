@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { AuthApplication } from '../../../core/application/auth.application';
 
 @Component({
   selector: 'amb-page-dashboard',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./page-dashboard.component.css'],
 })
 export class PageDashboardComponent implements OnInit {
-  constructor() {}
+  statusUser = false;
 
-  ngOnInit(): void {}
+  constructor(@Inject(AuthApplication) private auth: AuthApplication) {}
+
+  ngOnInit(): void {
+    this.statusUser = this.auth.isAuthenticated;
+  }
 }

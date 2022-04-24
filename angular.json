@@ -54,6 +54,27 @@
               ],
               "outputHashing": "all"
             },
+            "quality": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/backoffice/src/environments/environment.ts",
+                  "with": "projects/backoffice/src/environments/environment.uat.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,

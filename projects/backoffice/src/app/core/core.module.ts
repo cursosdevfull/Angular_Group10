@@ -16,7 +16,13 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageLockScreenComponent } from './pages/page-lock-screen/page-lock-screen.component';
 import { LockScreenComponent } from './components/lock-screen/lock-screen.component';
+import { AuthInfrastructure } from './infrastructure/auth.infrastructure';
+import { AuthApplication } from './application/auth.application';
+import { StorageInfrastructure } from './infrastructure/storage.infrastructure';
+import { StorageApplication } from './application/storage.application';
 
+const infrastructure = [AuthInfrastructure, StorageInfrastructure];
+const application = [AuthApplication, StorageApplication];
 @NgModule({
   declarations: [
     PageLoginComponent,
@@ -45,5 +51,6 @@ import { LockScreenComponent } from './components/lock-screen/lock-screen.compon
     HeaderComponent,
     PageLockScreenComponent,
   ],
+  providers: [...infrastructure, ...application],
 })
 export class CoreModule {}

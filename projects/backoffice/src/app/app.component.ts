@@ -26,7 +26,7 @@ export class AppComponent {
   ) {
     //layoutService.gettingConfiguration().subscribe((config) => {
     layoutService.configuration.subscribe((config: ILayout) => {
-      this.configLayout = config;
+      this.configLayout = config; // {header: false, menu: false}
     });
 
     this.router.events.subscribe((event) => {

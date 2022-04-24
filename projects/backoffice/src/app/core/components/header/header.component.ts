@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthApplication } from '../../application/auth.application';
 
 @Component({
   selector: 'amb-header',
@@ -7,11 +8,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(
+    @Inject(AuthApplication) private authApplication: AuthApplication,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
   logout() {
-    this.router.navigate(['/']);
+    this.authApplication.logout();
   }
 }

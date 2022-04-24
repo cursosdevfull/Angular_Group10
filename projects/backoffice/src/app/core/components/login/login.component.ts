@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import ValidatorsCustom from '../../../shared/helpers/validators';
+import { AuthApplication } from '../../application/auth.application';
+import { AuthEntity } from '../../domain/entities/auth.entity';
 
 @Component({
   selector: 'amb-login',
@@ -11,14 +13,19 @@ import ValidatorsCustom from '../../../shared/helpers/validators';
 export class LoginComponent implements OnInit {
   formGroup!: FormGroup;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authApplication: AuthApplication
+  ) {}
 
   ngOnInit(): void {
     this.loadForm();
   }
 
   login() {
-    this.router.navigate(['/dashboard']);
+    const { email, password } = this.formGroup.value;
+    const auth = new AuthEntity(email, password, 'abcde');
+    this.authApplication.login(auth);
   }
 
   loadForm() {
