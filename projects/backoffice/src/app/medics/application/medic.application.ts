@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { MedicEntity } from '../domain/entities/medic.entity';
 import { MedicInfrastructure } from '../infrastructure/medic.infrastructure';
 import { MedicRepository } from '../domain/repositories/medic.repository';
+import { ResultPage } from '../../shared/interfaces/result-page.interface';
 
 @Injectable()
 export class MedicApplication {
@@ -10,7 +11,7 @@ export class MedicApplication {
     @Inject(MedicInfrastructure) private repository: MedicRepository
   ) {}
 
-  getPage(page: number): Observable<MedicEntity[]> {
+  getPage(page: number): Observable<ResultPage<MedicEntity>> {
     return this.repository.getPage(page);
   }
 

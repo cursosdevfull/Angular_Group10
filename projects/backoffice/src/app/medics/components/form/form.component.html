@@ -1,6 +1,63 @@
 <mat-toolbar fxLayout fxLayoutAlign="space-between center">
   <h3>{{ title }}</h3>
-  <button mat-icon-button mat-dialog-close>
+  <button mat-icon-button matDialogClose>
     <mat-icon>close</mat-icon>
   </button>
 </mat-toolbar>
+<mat-dialog-content>
+  <form fxLayout="column" [formGroup]="group">
+    <div fxLayout fxLayoutGap="10px">
+      <div fxLayout="column" fxFlex="1 1 33%">
+        <amb-photo
+          formControlName="foto"
+          [photoByDefault]="photoToShow"
+        ></amb-photo>
+      </div>
+      <div fxLayout="column" fxFlex="1 1 33%">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input type="text" matInput required formControlName="nombre" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Segundo nombre</mat-label>
+          <input
+            type="text"
+            matInput
+            required
+            formControlName="segundo_nombre"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido</mat-label>
+          <input type="text" matInput required formControlName="apellido" />
+        </mat-form-field>
+      </div>
+      <div fxLayout="column" fxFlex="1 1 33%">
+        <mat-form-field appearance="outline">
+          <mat-label>CMP</mat-label>
+          <input type="text" matInput required formControlName="cmp" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>DNI</mat-label>
+          <input type="text" matInput required formControlName="dni" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Correo</mat-label>
+          <input type="text" matInput required formControlName="correo" />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxLayout fxLayoutAlign="end" fxLayoutGap="10px">
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        [disabled]="group.invalid"
+      >
+        Grabar
+      </button>
+      <button mat-button color="primary" type="button">Cancelar</button>
+    </div>
+  </form>
+</mat-dialog-content>

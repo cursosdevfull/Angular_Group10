@@ -17,12 +17,15 @@ import { LayoutModule } from './config/modules/layout.module';
 import { LAYOUT_CONSTANTS } from './config/constants/layout.constant';
 import { InactivityModule } from './config/modules/inactivity.module';
 import { INACTIVITY_CONSTANTS } from './config/constants/inactivity.constant';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MedicInfrastructure } from './medics/infrastructure/medic.infrastructure';
 import { MedicApplication } from './medics/application/medic.application';
+import { TokenInterceptor } from './shared/interceptors/token.interceptor';
+import { DriverInfrastructure } from './drivers/infrastructure/driver.infrastructure';
+import { DriverApplication } from './drivers/application/driver.application';
 
-const infrastructure = [MedicInfrastructure];
-const application = [MedicApplication];
+const infrastructure = [MedicInfrastructure, DriverInfrastructure];
+const application = [MedicApplication, DriverApplication];
 const components = [
   AppComponent,
   TestComponent,
@@ -33,7 +36,9 @@ const components = [
 ];
 const bootstrap = [AppComponent];
 const otherServices = [UtilsService];
-
+const interceptors = [
+  { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+];
 const modules = [
   BrowserModule,
   CoreModule,
@@ -49,7 +54,12 @@ const modules = [
 @NgModule({
   declarations: [...components],
   imports: [...modules],
-  providers: [...otherServices, ...infrastructure, ...application],
+  providers: [
+    ...otherServices,
+    ...infrastructure,
+    ...application,
+    ...interceptors,
+  ],
   bootstrap: [...bootstrap],
 })
 export class AppModule {}

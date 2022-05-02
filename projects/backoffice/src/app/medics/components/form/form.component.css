@@ -10,6 +10,11 @@
   padding: 0 !important;
 }
 
+.form-modal .mat-dialog-content {
+  margin: 0;
+  padding: 24px;
+}
+
 @media screen and (max-width: 599px) {
   .form-modal {
     width: 95%;

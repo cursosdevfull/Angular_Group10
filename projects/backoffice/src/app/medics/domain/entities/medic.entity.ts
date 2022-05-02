@@ -1,16 +1,16 @@
 export type MedicPropertiesOptional = Partial<{
   readonly id: number;
-  readonly active: boolean;
+  readonly activo: boolean;
 }>;
 
 export type MedicPropertiesRequired = Required<{
-  readonly name: string;
-  readonly lastname: string;
-  readonly surname: string;
+  readonly nombre: string;
+  readonly apellido: string;
+  readonly segundo_nombre: string;
   readonly cmp: string;
-  readonly email: string;
+  readonly correo: string;
   readonly dni: string;
-  readonly typeDNI: number;
+  readonly foto: string;
 }>;
 
 export type MedicProperties = MedicPropertiesRequired &
@@ -18,14 +18,14 @@ export type MedicProperties = MedicPropertiesRequired &
 
 export class MedicEntity {
   private readonly id: number | null = null;
-  private name: string = '';
-  private lastname: string = '';
-  private surname: string = '';
+  private nombre: string = '';
+  private apellido: string = '';
+  private segundo_nombre: string = '';
   private cmp: string = '';
-  private email: string = '';
+  private correo: string = '';
   private dni: string = '';
-  private typeDNI: number = 0;
-  private active: boolean = false;
+  private foto: string = '';
+  private activo: boolean = false;
 
   constructor(properties: MedicPropertiesOptional & MedicPropertiesRequired) {
     Object.assign(this, properties);
@@ -34,14 +34,14 @@ export class MedicEntity {
   get properties(): MedicProperties {
     return {
       id: this.id as number,
-      name: this.name,
-      lastname: this.lastname,
-      surname: this.surname,
+      nombre: this.nombre,
+      apellido: this.apellido,
+      segundo_nombre: this.segundo_nombre,
       cmp: this.cmp,
-      email: this.email,
+      correo: this.correo,
       dni: this.dni,
-      typeDNI: this.typeDNI,
-      active: this.active,
+      foto: this.foto,
+      activo: this.activo,
     };
   }
 }

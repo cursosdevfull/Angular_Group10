@@ -13,11 +13,17 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import {
   PerfectScrollbarConfigInterface,
   PerfectScrollbarModule,
   PERFECT_SCROLLBAR_CONFIG,
 } from 'ngx-perfect-scrollbar';
+import { MatInputModule } from '@angular/material/input';
+import { PhotoComponent } from './components/photo/photo.component';
+import { UploadDirective } from './directives/upload.directive';
+import { WebcamModule } from 'ngx-webcam';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: false,
@@ -29,6 +35,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     TitleComponent,
     TableComponent,
     ConfirmComponent,
+    PhotoComponent,
+    UploadDirective,
   ],
   imports: [
     CommonModule,
@@ -39,6 +47,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatTableModule,
     MatSortModule,
     MatDialogModule,
+    WebcamModule,
+    MatSlideToggleModule,
   ],
   exports: [
     MatCardModule,
@@ -54,6 +64,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatToolbarModule,
     FlexLayoutModule,
     PerfectScrollbarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    PhotoComponent,
   ],
   providers: [
     {

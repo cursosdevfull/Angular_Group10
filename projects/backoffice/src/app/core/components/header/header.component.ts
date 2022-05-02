@@ -1,6 +1,13 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthApplication } from '../../application/auth.application';
+import { StorageApplication } from '../../application/storage.application';
+import jwt_decode from 'jwt-decode';
+
+interface IPayload {
+  name: string;
+  email: string;
+  roles: string[];
+}
 
 @Component({
   selector: 'amb-header',
@@ -8,12 +15,20 @@ import { AuthApplication } from '../../application/auth.application';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  username = '';
+
   constructor(
     @Inject(AuthApplication) private authApplication: AuthApplication,
-    private router: Router
+    private storageApplication: StorageApplication
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const accessToken = this.storageApplication.getField(
+      'accessToken'
+    ) as string;
+    const payload: IPayload = jwt_decode(accessToken);
+    this.username = payload.name;
+  }
 
   logout() {
     this.authApplication.logout();

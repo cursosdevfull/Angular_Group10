@@ -5,7 +5,7 @@
 
   <button mat-button class="profile" [matMenuTriggerFor]="menu">
     <img src="/assets/img/user.png" alt="" />
-    <span>Sergio</span>
+    <span>{{ username | uppercase }}</span>
     <mat-icon>keyboard_arrow_down</mat-icon>
   </button>
   <mat-menu #menu="matMenu">

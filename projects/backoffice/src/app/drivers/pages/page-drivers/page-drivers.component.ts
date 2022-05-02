@@ -1,51 +1,59 @@
 import { Component, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
+import { UtilsService } from '../../../helpers/services/utils.service';
+import { BaseComponent } from '../../../shared/classes/base-component';
 import { MetaDataColumn } from '../../../shared/interfaces/metadatacolumn.interface';
+import { ResultPage } from '../../../shared/interfaces/result-page.interface';
+import { DriverApplication } from '../../application/driver.application';
+import { DriverEntity } from '../../domain/entities/driver.entity';
 
 @Component({
   selector: 'amb-page-drivers',
   templateUrl: './page-drivers.component.html',
   styleUrls: ['./page-drivers.component.css'],
 })
-export class PageDriversComponent implements OnInit {
+export class PageDriversComponent extends BaseComponent implements OnInit {
   metaData: MetaDataColumn[] = [
-    { field: 'name', header: 'Name', sortable: true },
-    { field: 'lastname', header: 'Lastname', sortable: true },
-    /*     { field: 'email', header: 'Email', sortable: true },
-    { field: 'phone', header: 'Phone', sortable: true },
-    { field: 'status', header: 'Status', sortable: true }, */
+    { field: 'nombre', header: 'Name', sortable: true },
   ];
 
-  subMetaData: MetaDataColumn[] = [
+  /* subMetaData: MetaDataColumn[] = [
     { field: 'email', header: 'Email', sortable: true },
     { field: 'phone', header: 'Phone', sortable: true },
     { field: 'status', header: 'Status', sortable: true },
-  ];
+  ]; */
 
-  data = [
-    {
-      name: 'Blanca',
-      lastname: 'Garcia',
-      email: 'email01@email.com',
-      phone: '123456789',
-      status: 'Activo',
-      driverLicense: '123456789',
-    },
-    {
-      name: 'Sergio',
-      lastname: 'Perez',
-      email: 'sergio.perez@correo.com',
-      phone: '123456789',
-      status: 'Activo',
-      driverLicense: '123456789',
-    },
-  ];
+  data: DriverEntity[] = [];
 
-  constructor() {}
+  constructor(
+    protected override utilsService: UtilsService,
+    private driverApplication: DriverApplication
+  ) {
+    super(utilsService);
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getPage(0);
+  }
 
-  changeSort(sort: Sort) {
+  getPage(page: number): void {
+    this.driverApplication
+      .getPage(page)
+      .subscribe((data: ResultPage<DriverEntity>) => {
+        this.data = data.records;
+      });
+  }
+
+  openForm(row: any = null) {
+    /* this.utilsService.showModal(FormComponent, {
+      panelClass: 'form-modal',
+      //width: '600px',
+      data: row,
+      disableClose: true,
+    }); */
+  }
+
+  /*   changeSort(sort: Sort) {
     if (sort.active && sort.direction) {
       console.log(sort);
       this.data = [
@@ -72,5 +80,5 @@ export class PageDriversComponent implements OnInit {
 
   compare(fieldA: number | string, fieldB: number | string, isAsc: boolean) {
     return (isAsc ? 1 : -1) * (fieldA < fieldB ? -1 : 1);
-  }
+  } */
 }
