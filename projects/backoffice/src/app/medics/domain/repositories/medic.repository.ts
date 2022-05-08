@@ -5,7 +5,7 @@ import { MedicEntity } from '../entities/medic.entity';
 export interface MedicRepository {
   getPage(page: number): Observable<ResultPage<MedicEntity>>;
   delete(id: number): Observable<MedicEntity>;
-  update(id: number, medic: MedicEntity): Observable<MedicEntity>;
-  insert(medic: MedicEntity): Observable<MedicEntity>;
+  update(id: number, medic: FormData): Observable<MedicEntity>;
+  insert(medic: FormData): Observable<MedicEntity>;
   list(): Observable<MedicEntity[]>;
 }

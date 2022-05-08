@@ -8,6 +8,7 @@ import { StorageInfrastructure } from '../infrastructure/storage.infrastructure'
 import { StorageRepository } from '../domain/repositories/storage.repository';
 import { ILayout } from '../../config/interfaces/layout.interface';
 import { LayoutService } from '../../config/services/layout.service';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthApplication {
@@ -42,5 +43,9 @@ export class AuthApplication {
     return (
       this.userLogged || !!this.storageRepository.getStorage('accessToken')
     );
+  }
+
+  getNewAccessToken(refreshToken: string): Observable<Tokens> {
+    return this.authRepository.getNewAccessToken(refreshToken);
   }
 }

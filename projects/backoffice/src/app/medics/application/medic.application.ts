@@ -19,11 +19,11 @@ export class MedicApplication {
     return this.repository.delete(id);
   }
 
-  update(id: number, medic: MedicEntity): Observable<MedicEntity> {
+  update(id: number, medic: FormData): Observable<MedicEntity> {
     return this.repository.update(id, medic);
   }
 
-  insert(medic: MedicEntity): Observable<MedicEntity> {
+  insert(medic: FormData): Observable<MedicEntity> {
     return this.repository.insert(medic);
   }
 

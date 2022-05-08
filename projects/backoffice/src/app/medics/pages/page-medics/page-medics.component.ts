@@ -25,6 +25,9 @@ export class PageMedicsComponent extends BaseComponent implements OnInit {
     { field: 'cmp', header: 'CMP', sortable: true },
   ];
   data: MedicEntity[] = [];
+  dataOriginal: MedicEntity[] = [];
+  currentPage = 0;
+  totalRecords = 0;
 
   constructor(
     protected override utilsService: UtilsService,
@@ -41,16 +44,52 @@ export class PageMedicsComponent extends BaseComponent implements OnInit {
     this.medicApplication
       .getPage(page)
       .subscribe((data: ResultPage<MedicEntity>) => {
+        this.currentPage = page;
+        this.totalRecords = data.totalRecords;
         this.data = data.records;
+        this.dataOriginal = data.records;
       });
   }
 
   openForm(row: any = null) {
-    this.utilsService.showModal(FormComponent, {
+    const reference = this.utilsService.showModal(FormComponent, {
       panelClass: 'form-modal',
-      //width: '600px',
       data: row,
       disableClose: true,
     });
+
+    reference.afterClosed().subscribe((result) => {
+      if (!result) {
+        return;
+      }
+
+      if (result.id) {
+        this.medicApplication
+          .update(result.id, result.medic)
+          .subscribe((result) => {
+            this.getPage(this.currentPage);
+          });
+      } else {
+        this.medicApplication.insert(result.medic).subscribe((result) => {
+          this.getPage(this.currentPage);
+        });
+      }
+    });
+  }
+
+  changePage(page: number): void {
+    this.getPage(page);
+  }
+
+  search(term: string) {
+    if (term) {
+      this.data = this.data.filter(
+        (el: any) =>
+          el.nombre.toLowerCase().includes(term) ||
+          el.apellido.toLowerCase().includes(term)
+      );
+    } else {
+      this.data = [...this.dataOriginal];
+    }
   }
 }

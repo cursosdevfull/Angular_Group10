@@ -20,11 +20,14 @@ export class MedicInfrastructure implements MedicRepository {
   delete(id: number): Observable<MedicEntity> {
     throw new Error('Method not implemented.');
   }
-  update(id: number, medic: MedicEntity): Observable<MedicEntity> {
-    throw new Error('Method not implemented.');
+  update(id: number, medic: FormData): Observable<MedicEntity> {
+    return this.http.put<MedicEntity>(
+      `${environment.apiUrl}/medics/${id}`,
+      medic
+    );
   }
-  insert(medic: MedicEntity): Observable<MedicEntity> {
-    throw new Error('Method not implemented.');
+  insert(medic: FormData): Observable<MedicEntity> {
+    return this.http.post<MedicEntity>(`${environment.apiUrl}/medics`, medic);
   }
   list(): Observable<MedicEntity[]> {
     throw new Error('Method not implemented.');

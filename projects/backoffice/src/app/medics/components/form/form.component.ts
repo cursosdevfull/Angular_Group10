@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'amb-form',
@@ -13,7 +13,10 @@ export class FormComponent implements OnInit {
   group!: FormGroup;
   photoToShow = '';
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private reference: MatDialogRef<FormComponent>
+  ) {
     this.title = data ? 'EDIT' : 'ADD';
   }
 
@@ -39,10 +42,27 @@ export class FormComponent implements OnInit {
     });
 
     if (this.data) {
-      this.group.addControl('foto', new FormControl(null));
+      this.group.addControl('foto', new FormControl());
       this.photoToShow = this.data.foto ? this.data.foto : '';
     } else {
       this.group.addControl('foto', new FormControl(null, Validators.required));
     }
+  }
+
+  onSave() {
+    const values = this.group.value; // {id:1, nombre:"", segundo_nombre: "", ...}
+    const recordId = values.id;
+    delete values.id;
+
+    const fd = new FormData();
+    for (const key of Object.keys(values)) {
+      if (key === 'foto' && values[key]) {
+        fd.append(key, values[key]);
+      } else if (key !== 'foto') {
+        fd.append(key, values[key]);
+      }
+    }
+
+    this.reference.close({ id: recordId, medic: fd });
   }
 }

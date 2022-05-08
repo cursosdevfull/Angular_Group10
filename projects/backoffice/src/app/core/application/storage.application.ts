@@ -11,4 +11,12 @@ export class StorageApplication {
   getField(nameProperty: string): string | null {
     return this.storage.getStorage(nameProperty);
   }
+
+  setField(nameProperty: string, value: string): void {
+    this.storage.setStorage(nameProperty, value);
+  }
+
+  getFieldInToken(fieldName: string): string | string[] {
+    return this.storage.getFieldInToken(fieldName);
+  }
 }

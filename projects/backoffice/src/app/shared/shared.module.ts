@@ -24,6 +24,10 @@ import { PhotoComponent } from './components/photo/photo.component';
 import { UploadDirective } from './directives/upload.directive';
 import { WebcamModule } from 'ngx-webcam';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { PaginatorComponent } from './components/paginator/paginator.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { SearchComponent } from './components/search/search.component';
+import { RolesAllowedDirective } from './directives/roles-allowed.directive';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: false,
@@ -37,6 +41,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ConfirmComponent,
     PhotoComponent,
     UploadDirective,
+    PaginatorComponent,
+    SearchComponent,
+    RolesAllowedDirective,
   ],
   imports: [
     CommonModule,
@@ -49,6 +56,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatDialogModule,
     WebcamModule,
     MatSlideToggleModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   exports: [
     MatCardModule,
@@ -67,6 +77,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatFormFieldModule,
     MatInputModule,
     PhotoComponent,
+    PaginatorComponent,
+    SearchComponent,
+    RolesAllowedDirective,
   ],
   providers: [
     {

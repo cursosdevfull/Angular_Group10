@@ -4,4 +4,5 @@ import { AuthEntity } from '../entities/auth.entity';
 
 export interface AuthRepository {
   login(auth: AuthEntity): Observable<Tokens>;
+  getNewAccessToken(refreshToken: string): Observable<Tokens>;
 }

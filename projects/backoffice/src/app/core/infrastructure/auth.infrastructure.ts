@@ -13,4 +13,10 @@ export class AuthInfrastructure implements AuthRepository {
   login(auth: AuthEntity): Observable<Tokens> {
     return this.http.post<Tokens>(`${environment.apiUrl}/users/login`, auth);
   }
+
+  getNewAccessToken(refreshToken: string): Observable<Tokens> {
+    return this.http.get<Tokens>(
+      `${environment.apiUrl}/users/refresh/${refreshToken}`
+    );
+  }
 }

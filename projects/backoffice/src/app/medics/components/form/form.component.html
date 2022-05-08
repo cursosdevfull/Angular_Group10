@@ -54,10 +54,13 @@
         color="primary"
         type="button"
         [disabled]="group.invalid"
+        (click)="onSave()"
       >
         Grabar
       </button>
-      <button mat-button color="primary" type="button">Cancelar</button>
+      <button mat-button color="primary" type="button" mat-dialog-close>
+        Cancelar
+      </button>
     </div>
   </form>
 </mat-dialog-content>
