@@ -1,0 +1,23 @@
+version: "0.2"
+phases:
+  install:
+    runtime-version:
+      nodejs: 14
+  pre_build:
+    commands:
+      - echo "installing dependencies"
+      - npm install
+  build:
+    commands:
+      - echo "starting compilation"
+      - npm run build:prod
+  post_build:
+    commands:
+      - aws s3 rm s3://cursoangulargroup10 --recursive
+      - aws s3 sync ./dist/backoffice s3://cursoangulargroup10 --delete
+      - aws cloudfront create-invalidation --distribution-id EZL7GEVH4F1Z2 --paths '/*'
+artifacts:
+  name: "BuildOutput"
+  files:
+    - "**/*"
+  base-directory: "dist/backoffice"
