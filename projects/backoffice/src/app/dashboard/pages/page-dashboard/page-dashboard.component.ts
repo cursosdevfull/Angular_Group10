@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AuthApplication } from '../../../core/application/auth.application';
 
 @Component({
@@ -8,10 +9,22 @@ import { AuthApplication } from '../../../core/application/auth.application';
 })
 export class PageDashboardComponent implements OnInit {
   statusUser = false;
+  section = '';
 
-  constructor(@Inject(AuthApplication) private auth: AuthApplication) {}
+  constructor(
+    @Inject(AuthApplication) private auth: AuthApplication,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.statusUser = this.auth.isAuthenticated;
+
+    this.section = this.activatedRoute.snapshot.paramMap.get(
+      'section'
+    ) as string;
+
+    this.activatedRoute.params.subscribe((params: any) => {
+      this.section = params.section;
+    });
   }
 }

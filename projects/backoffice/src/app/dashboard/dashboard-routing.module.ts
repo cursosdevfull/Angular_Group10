@@ -5,7 +5,7 @@ import { PageDashboardComponent } from './pages/page-dashboard/page-dashboard.co
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':section',
     component: PageDashboardComponent,
     canActivate: [AuthenticationGuard],
   },
@@ -13,5 +13,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
 export class DashboardRoutingModule {}

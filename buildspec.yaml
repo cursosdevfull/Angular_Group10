@@ -10,12 +10,13 @@ phases:
   build:
     commands:
       - echo "starting compilation"
+      - aws s3 cp s3://devops/$AMBIENTE/environment.prod.ts ./src/environments/environment.prod.ts
       - npm run build:prod
   post_build:
     commands:
-      - aws s3 rm s3://cursoangulargroup10-$(AMBIENTE) --recursive
-      - aws s3 sync ./dist/backoffice s3://cursoangulargroup10-$(AMBIENTE) --delete
-      - aws cloudfront create-invalidation --distribution-id EZL7GEVH4F1Z2 --paths '/*'
+      - aws s3 rm $BUCKETNAME --recursive
+      - aws s3 sync ./dist/backoffice $BUCKETNAME --delete
+      - aws cloudfront create-invalidation --distribution-id $DISTRIBUTIONID --paths '/*'
 artifacts:
   name: "BuildOutput"
   files:
