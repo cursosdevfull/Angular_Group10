@@ -3,6 +3,15 @@
     <mat-icon>add</mat-icon>
     Add
   </button>
+  <button
+    mat-flat-button
+    color="accent"
+    matTooltip="EXPORT TO EXCEL"
+    (click)="exportToExcel()"
+  >
+    <mat-icon svgIcon="exportToExcel"></mat-icon>
+    Excel
+  </button>
 </amb-title>
 <amb-container>
   <perfect-scrollbar class="heightMaxPerfectScrollbar">

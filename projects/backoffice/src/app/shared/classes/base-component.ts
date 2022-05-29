@@ -1,6 +1,10 @@
 import { UtilsService } from '../../helpers/services/utils.service';
+import { MetaDataColumn } from '../interfaces/metadatacolumn.interface';
 export abstract class BaseComponent {
   abstract data: any;
+  abstract metaDataColumns: MetaDataColumn[];
+  abstract titleSheetExportToExcel: string;
+  abstract fileNameExportToExcel: string;
 
   constructor(protected utilsService: UtilsService) {}
 
@@ -19,5 +23,19 @@ export abstract class BaseComponent {
         this.data = elements;
       }
     });
+  }
+
+  exportToExcel() {
+    console.log(this.data);
+    console.log(this.metaDataColumns);
+    console.log(this.fileNameExportToExcel);
+    console.log(this.titleSheetExportToExcel);
+
+    this.utilsService.exportToExcel(
+      this.data,
+      this.metaDataColumns,
+      this.fileNameExportToExcel,
+      this.titleSheetExportToExcel
+    );
   }
 }

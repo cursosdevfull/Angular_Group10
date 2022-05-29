@@ -23,6 +23,9 @@ import { MedicApplication } from './medics/application/medic.application';
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 import { DriverInfrastructure } from './drivers/infrastructure/driver.infrastructure';
 import { DriverApplication } from './drivers/application/driver.application';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { Paginator } from './shared/classes/paginator';
+import { IconService } from './helpers/services/icon.service';
 
 const infrastructure = [MedicInfrastructure, DriverInfrastructure];
 const application = [MedicApplication, DriverApplication];
@@ -51,6 +54,8 @@ const modules = [
   HttpClientModule,
 ];
 
+const material = [{ provide: MatPaginatorIntl, useClass: Paginator }];
+
 @NgModule({
   declarations: [...components],
   imports: [...modules],
@@ -59,7 +64,10 @@ const modules = [
     ...infrastructure,
     ...application,
     ...interceptors,
+    ...material,
   ],
   bootstrap: [...bootstrap],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private iconService: IconService) {}
+}

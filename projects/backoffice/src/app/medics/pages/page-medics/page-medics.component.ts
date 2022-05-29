@@ -29,6 +29,16 @@ export class PageMedicsComponent extends BaseComponent implements OnInit {
   currentPage = 0;
   totalRecords = 0;
 
+  metaDataColumns: MetaDataColumn[] = [
+    { field: 'nombre', header: 'Name', sortable: true },
+    { field: 'apellido', header: 'Lastname', sortable: true },
+    { field: 'segundo_nombre', header: 'Surname', sortable: true },
+    { field: 'correo', header: 'Email', sortable: true },
+    { field: 'cmp', header: 'CMP', sortable: true },
+  ];
+  titleSheetExportToExcel: string = 'List of Medics';
+  fileNameExportToExcel: string = 'medics';
+
   constructor(
     protected override utilsService: UtilsService,
     private medicApplication: MedicApplication

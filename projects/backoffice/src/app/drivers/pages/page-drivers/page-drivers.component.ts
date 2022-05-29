@@ -16,12 +16,11 @@ export class PageDriversComponent extends BaseComponent implements OnInit {
   metaData: MetaDataColumn[] = [
     { field: 'nombre', header: 'Name', sortable: true },
   ];
-
-  /* subMetaData: MetaDataColumn[] = [
-    { field: 'email', header: 'Email', sortable: true },
-    { field: 'phone', header: 'Phone', sortable: true },
-    { field: 'status', header: 'Status', sortable: true },
-  ]; */
+  metaDataColumns: MetaDataColumn[] = [
+    { field: 'nombre', header: 'Name', sortable: true },
+  ];
+  titleSheetExportToExcel: string = 'List of Drivers';
+  fileNameExportToExcel: string = 'drivers';
 
   data: DriverEntity[] = [];
 
