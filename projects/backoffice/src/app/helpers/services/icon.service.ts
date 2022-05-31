@@ -11,6 +11,7 @@ interface IIcon {
 export class IconService {
   private listIcons: IIcon[] = [
     { name: 'exportToExcel', path: '../assets/img/icons/excel.svg' },
+    { name: 'exportToPdf', path: '../assets/img/icons/pdf.svg' },
   ];
 
   constructor(

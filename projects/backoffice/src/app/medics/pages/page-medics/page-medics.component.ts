@@ -38,6 +38,7 @@ export class PageMedicsComponent extends BaseComponent implements OnInit {
   ];
   titleSheetExportToExcel: string = 'List of Medics';
   fileNameExportToExcel: string = 'medics';
+  additionalInformationExcel = {};
 
   constructor(
     protected override utilsService: UtilsService,
@@ -101,5 +102,13 @@ export class PageMedicsComponent extends BaseComponent implements OnInit {
     } else {
       this.data = [...this.dataOriginal];
     }
+  }
+
+  exportDataExcel() {
+    this.additionalInformationExcel = {
+      'Fecha de creación': new Date().toISOString(),
+      Usuario: 'admin',
+    };
+    this.exportToExcel();
   }
 }

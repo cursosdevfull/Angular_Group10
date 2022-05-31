@@ -5,6 +5,7 @@ export abstract class BaseComponent {
   abstract metaDataColumns: MetaDataColumn[];
   abstract titleSheetExportToExcel: string;
   abstract fileNameExportToExcel: string;
+  abstract additionalInformationExcel: { [s: string]: string };
 
   constructor(protected utilsService: UtilsService) {}
 
@@ -26,12 +27,17 @@ export abstract class BaseComponent {
   }
 
   exportToExcel() {
-    console.log(this.data);
-    console.log(this.metaDataColumns);
-    console.log(this.fileNameExportToExcel);
-    console.log(this.titleSheetExportToExcel);
-
     this.utilsService.exportToExcel(
+      this.data,
+      this.metaDataColumns,
+      this.fileNameExportToExcel,
+      this.titleSheetExportToExcel,
+      this.additionalInformationExcel
+    );
+  }
+
+  exportToPdf() {
+    this.utilsService.exportToPdf(
       this.data,
       this.metaDataColumns,
       this.fileNameExportToExcel,

@@ -4,13 +4,22 @@
     Add
   </button>
   <button
-    mat-flat-button
+    mat-stroked-button
     color="accent"
     matTooltip="EXPORT TO EXCEL"
-    (click)="exportToExcel()"
+    (click)="exportDataExcel()"
   >
     <mat-icon svgIcon="exportToExcel"></mat-icon>
     Excel
+  </button>
+  <button
+    mat-stroked-button
+    color="warn"
+    matTooltip="EXPORT TO PDF"
+    (click)="exportToPdf()"
+  >
+    <mat-icon svgIcon="exportToPdf"></mat-icon>
+    PDF
   </button>
 </amb-title>
 <amb-container>
