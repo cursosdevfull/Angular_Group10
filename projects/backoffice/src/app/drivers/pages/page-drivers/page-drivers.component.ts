@@ -21,6 +21,7 @@ export class PageDriversComponent extends BaseComponent implements OnInit {
   ];
   titleSheetExportToExcel: string = 'List of Drivers';
   fileNameExportToExcel: string = 'drivers';
+  additionalInformationExcel = {};
 
   data: DriverEntity[] = [];
 

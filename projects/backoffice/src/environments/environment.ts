@@ -6,6 +6,8 @@ export const environment = {
   production: false,
   apiUrl: 'https://api-cursoangular.cursos-dev.com',
   pageSize: 6,
+  apiCovid: "/api/confirmed",
+  apiSocket: "https://p7inv.sse.codesandbox.io/"
 };
 
 /*

@@ -115,10 +115,21 @@
               "projects/backoffice/src/favicon.ico",
               "projects/backoffice/src/assets"
             ],
-            "styles": [
-              "projects/backoffice/src/styles.css"
-            ],
+            "styles": ["projects/backoffice/src/styles.css"],
             "scripts": []
+          }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "browserTarget": "backoffice:build",
+            "port": 4400
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "browserTarget": "backoffice:build"
           }
         }
       }
