@@ -5530,7 +5530,7 @@
         },
         {
             "name": "CovidComponent",
-            "id": "component-CovidComponent-84267d211572b9337bc1219c3b676e5a0a4a6c122b798097bd22817f0d1df9d908fd570c96354637e54f13bcf168639af84d742356ba1b440adfcc5a5df00f3c",
+            "id": "component-CovidComponent-e9c76450fd795d002c4a222cb5c5845b5139fec16c468be54d7fcfe90f658cdb700e1363dad82008602c4e711cf2ee37dfd4ed0c57c76fcb2f54a1d7dc8aaf96",
             "file": "projects/backoffice/src/app/dashboard/components/covid/covid.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -5679,7 +5679,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { CovidApplication } from '../../application/covid.application';\nimport { DataCovid } from '../../domain/entities/data-covid';\nimport { CovidModel } from '../../domain/models/covid.model';\n\n@Component({\n  selector: 'amb-covid',\n  templateUrl: './covid.component.html',\n  styleUrls: ['./covid.component.css'],\n})\nexport class CovidComponent implements OnInit {\n  view: [number, number] = [700, 450];\n  scheme = 'natural';\n  xAxis = true;\n  yAxis = true;\n  showXAxisLabel = true;\n  showYAxisLabel = true;\n  yAxisLabel = 'Casos confirmados';\n  xAxisLabel = 'Países';\n  legend = false;\n  legendTitle = '';\n\n  dataCovid: DataCovid[] = [];\n\n  constructor(private covidApplication: CovidApplication) {}\n\n  ngOnInit(): void {\n    this.covidApplication.getCovidData().subscribe((data) => {\n      this.dataCovid = data.map((covid: CovidModel) => ({\n        name: covid.countryRegion,\n        value: covid.confirmed,\n      }));\n    });\n  }\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { CovidApplication } from '../../application/covid.application';\r\nimport { DataCovid } from '../../domain/entities/data-covid';\r\nimport { CovidModel } from '../../domain/models/covid.model';\r\n\r\n@Component({\r\n  selector: 'amb-covid',\r\n  templateUrl: './covid.component.html',\r\n  styleUrls: ['./covid.component.css'],\r\n})\r\nexport class CovidComponent implements OnInit {\r\n  view: [number, number] = [700, 450];\r\n  scheme = 'natural';\r\n  xAxis = true;\r\n  yAxis = true;\r\n  showXAxisLabel = true;\r\n  showYAxisLabel = true;\r\n  yAxisLabel = 'Casos confirmados';\r\n  xAxisLabel = 'Países';\r\n  legend = false;\r\n  legendTitle = '';\r\n\r\n  dataCovid: DataCovid[] = [];\r\n\r\n  constructor(private covidApplication: CovidApplication) {}\r\n\r\n  ngOnInit(): void {\r\n    this.covidApplication.getCovidData().subscribe((data) => {\r\n      this.dataCovid = data.map((covid: CovidModel) => ({\r\n        name: covid.countryRegion,\r\n        value: covid.confirmed,\r\n      }));\r\n    });\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -5717,7 +5717,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<ngx-charts-bar-vertical\n  [view]=\"view\"\n  [results]=\"dataCovid\"\n  [xAxis]=\"xAxis\"\n  [yAxis]=\"yAxis\"\n  [legend]=\"legend\"\n  [legendTitle]=\"legendTitle\"\n  [showXAxisLabel]=\"showXAxisLabel\"\n  [showYAxisLabel]=\"showYAxisLabel\"\n  [xAxisLabel]=\"xAxisLabel\"\n  [yAxisLabel]=\"yAxisLabel\"\n></ngx-charts-bar-vertical>\n"
+            "templateData": "<ngx-charts-bar-vertical\r\n  [view]=\"view\"\r\n  [results]=\"dataCovid\"\r\n  [xAxis]=\"xAxis\"\r\n  [yAxis]=\"yAxis\"\r\n  [legend]=\"legend\"\r\n  [legendTitle]=\"legendTitle\"\r\n  [showXAxisLabel]=\"showXAxisLabel\"\r\n  [showYAxisLabel]=\"showYAxisLabel\"\r\n  [xAxisLabel]=\"xAxisLabel\"\r\n  [yAxisLabel]=\"yAxisLabel\"\r\n></ngx-charts-bar-vertical>\r\n"
         },
         {
             "name": "FormComponent",
@@ -8376,7 +8376,7 @@
         },
         {
             "name": "SocketComponent",
-            "id": "component-SocketComponent-644496bfa0e134a64396137d26eb28e60a5c6610228f2cba04231b3ab6e8d24f3fcfdac3e96dde65cb55c72ef838544333257e4e35bd6e1cd2baed559fcb3512",
+            "id": "component-SocketComponent-a882d2bfaabdadaf9668adbfb6d9c4d70871f9170499be4bb02fface942f06738ef5b4ebed6a57154fd1de4ea4b767c96e783b1390dd369450b78335992876f1",
             "file": "projects/backoffice/src/app/dashboard/components/socket/socket.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -8495,7 +8495,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { SocketApplication } from '../../application/socket.application';\nimport { DataCovid } from '../../domain/entities/data-covid';\n\n@Component({\n  selector: 'amb-socket',\n  templateUrl: './socket.component.html',\n  styleUrls: ['./socket.component.css'],\n})\nexport class SocketComponent implements OnInit {\n  dataCovid: DataCovid[] = [];\n\n  view: [number, number] = [700, 450];\n  scheme = 'natural';\n\n  legend = true;\n  legendPosition = ['right', 'below'];\n  legendTitle = 'Vacunas';\n  gradient = true;\n  doughnut = true;\n\n  constructor(private socket: SocketApplication) {}\n\n  ngOnInit(): void {\n    this.socket.listen('dataupdate').subscribe((data: DataCovid[]) => {\n      this.dataCovid = data;\n    });\n  }\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { SocketApplication } from '../../application/socket.application';\r\nimport { DataCovid } from '../../domain/entities/data-covid';\r\n\r\n@Component({\r\n  selector: 'amb-socket',\r\n  templateUrl: './socket.component.html',\r\n  styleUrls: ['./socket.component.css'],\r\n})\r\nexport class SocketComponent implements OnInit {\r\n  dataCovid: DataCovid[] = [];\r\n\r\n  view: [number, number] = [700, 450];\r\n  scheme = 'natural';\r\n\r\n  legend = true;\r\n  legendPosition = ['right', 'below'];\r\n  legendTitle = 'Vacunas';\r\n  gradient = true;\r\n  doughnut = true;\r\n\r\n  constructor(private socket: SocketApplication) {}\r\n\r\n  ngOnInit(): void {\r\n    this.socket.listen('dataupdate').subscribe((data: DataCovid[]) => {\r\n      this.dataCovid = data;\r\n    });\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -8533,11 +8533,11 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<ngx-charts-pie-chart\n  [view]=\"view\"\n  [results]=\"dataCovid\"\n  [scheme]=\"scheme\"\n  [legend]=\"legend\"\n  [legendTitle]=\"legendTitle\"\n  [gradient]=\"gradient\"\n  [doughnut]=\"doughnut\"\n></ngx-charts-pie-chart>\n"
+            "templateData": "<ngx-charts-pie-chart\r\n  [view]=\"view\"\r\n  [results]=\"dataCovid\"\r\n  [scheme]=\"scheme\"\r\n  [legend]=\"legend\"\r\n  [legendTitle]=\"legendTitle\"\r\n  [gradient]=\"gradient\"\r\n  [doughnut]=\"doughnut\"\r\n></ngx-charts-pie-chart>\r\n"
         },
         {
             "name": "TableComponent",
-            "id": "component-TableComponent-8272052d59396c9e539c8012537e6aa204d9b1e4965c9418bcec814d5cc5674d012fa8b0df6cfbdefe0eb23f498dfa3fe7ef6da2058502334a868c761857d227",
+            "id": "component-TableComponent-ccb39b5ff9f6062f4f940fa7dbac37aea66ac96ae4318bc78352140e362a9665e506fa2def5e44b0cdc15573cb3c2bc66afb842c766936dc53e4a727064a9939",
             "file": "projects/backoffice/src/app/shared/components/table/table.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -8570,6 +8570,15 @@
                     "deprecationMessage": "",
                     "line": 26,
                     "type": "MetaDataColumn[]",
+                    "decorators": []
+                },
+                {
+                    "name": "selectedColor",
+                    "defaultValue": "'#000000'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 32,
+                    "type": "string",
                     "decorators": []
                 },
                 {
@@ -8616,7 +8625,7 @@
                     "type": "string[]",
                     "optional": false,
                     "description": "",
-                    "line": 34
+                    "line": 35
                 },
                 {
                     "name": "table",
@@ -8641,7 +8650,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 33
+                    "line": 34
                 }
             ],
             "methodsClass": [
@@ -8658,7 +8667,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 44,
+                    "line": 45,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -8679,7 +8688,7 @@
                     "optional": false,
                     "returnType": "string[]",
                     "typeParameters": [],
-                    "line": 48,
+                    "line": 49,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -8689,7 +8698,7 @@
                     "optional": false,
                     "returnType": "string[]",
                     "typeParameters": [],
-                    "line": 40,
+                    "line": 41,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -8699,7 +8708,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 56,
+                    "line": 57,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -8716,7 +8725,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 67,
+                    "line": 68,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -8737,7 +8746,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 38,
+                    "line": 39,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -8749,7 +8758,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\r\n  Component,\r\n  ContentChildren,\r\n  EventEmitter,\r\n  Input,\r\n  OnInit,\r\n  Output,\r\n  QueryList,\r\n  SimpleChange,\r\n  SimpleChanges,\r\n  ViewChild,\r\n  ViewChildren,\r\n  ViewEncapsulation,\r\n} from '@angular/core';\r\nimport { Sort } from '@angular/material/sort';\r\nimport { MatColumnDef, MatTable } from '@angular/material/table';\r\nimport { MetaDataColumn } from '../../interfaces/metadatacolumn.interface';\r\n\r\n@Component({\r\n  selector: 'amb-table',\r\n  templateUrl: './table.component.html',\r\n  styleUrls: ['./table.component.css'],\r\n})\r\nexport class TableComponent implements OnInit {\r\n  @Output() onChangeSort: EventEmitter<Sort> = new EventEmitter<Sort>();\r\n  @Input() metaData: MetaDataColumn[] = [];\r\n  @Input() subMetaData: MetaDataColumn[] = [];\r\n  @Input() data: any = [];\r\n  @ContentChildren(MatColumnDef, { descendants: true })\r\n  columnsDef!: QueryList<MatColumnDef>;\r\n  @ViewChild(MatTable, { static: true }) table!: MatTable<any>;\r\n\r\n  widthColumns = '';\r\n  listFields: string[] = [];\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {}\r\n\r\n  getFields(): string[] {\r\n    return this.metaData.map((item) => item.field);\r\n  }\r\n\r\n  changeSort(sort: Sort) {\r\n    this.onChangeSort.emit(sort);\r\n  }\r\n\r\n  getAdditionalFields(): string[] {\r\n    this.widthColumns =\r\n      this.subMetaData.length > 0\r\n        ? `1 1 ${100 / this.subMetaData.length}%`\r\n        : '';\r\n    return this.subMetaData.length > 0 ? ['details'] : [];\r\n  }\r\n\r\n  ngAfterContentInit() {\r\n    if (!this.columnsDef) {\r\n      return;\r\n    }\r\n\r\n    this.columnsDef.forEach((columnDef) => {\r\n      this.listFields.push(columnDef.name);\r\n      this.table?.addColumnDef(columnDef);\r\n    });\r\n  }\r\n\r\n  ngOnChanges(changes: SimpleChanges) {\r\n    if (changes['metaData']) {\r\n      this.listFields = this.getFields();\r\n    }\r\n  }\r\n}\r\n",
+            "sourceCode": "import {\r\n  Component,\r\n  ContentChildren,\r\n  EventEmitter,\r\n  Input,\r\n  OnInit,\r\n  Output,\r\n  QueryList,\r\n  SimpleChange,\r\n  SimpleChanges,\r\n  ViewChild,\r\n  ViewChildren,\r\n  ViewEncapsulation,\r\n} from '@angular/core';\r\nimport { Sort } from '@angular/material/sort';\r\nimport { MatColumnDef, MatTable } from '@angular/material/table';\r\nimport { MetaDataColumn } from '../../interfaces/metadatacolumn.interface';\r\n\r\n@Component({\r\n  selector: 'amb-table',\r\n  templateUrl: './table.component.html',\r\n  styleUrls: ['./table.component.css'],\r\n})\r\nexport class TableComponent implements OnInit {\r\n  @Output() onChangeSort: EventEmitter<Sort> = new EventEmitter<Sort>();\r\n  @Input() metaData: MetaDataColumn[] = [];\r\n  @Input() subMetaData: MetaDataColumn[] = [];\r\n  @Input() data: any = [];\r\n  @ContentChildren(MatColumnDef, { descendants: true })\r\n  columnsDef!: QueryList<MatColumnDef>;\r\n  @ViewChild(MatTable, { static: true }) table!: MatTable<any>;\r\n  @Input() selectedColor: string = '#000000';\r\n\r\n  widthColumns = '';\r\n  listFields: string[] = [];\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {}\r\n\r\n  getFields(): string[] {\r\n    return this.metaData.map((item) => item.field);\r\n  }\r\n\r\n  changeSort(sort: Sort) {\r\n    this.onChangeSort.emit(sort);\r\n  }\r\n\r\n  getAdditionalFields(): string[] {\r\n    this.widthColumns =\r\n      this.subMetaData.length > 0\r\n        ? `1 1 ${100 / this.subMetaData.length}%`\r\n        : '';\r\n    return this.subMetaData.length > 0 ? ['details'] : [];\r\n  }\r\n\r\n  ngAfterContentInit() {\r\n    if (!this.columnsDef) {\r\n      return;\r\n    }\r\n\r\n    this.columnsDef.forEach((columnDef) => {\r\n      this.listFields.push(columnDef.name);\r\n      this.table?.addColumnDef(columnDef);\r\n    });\r\n  }\r\n\r\n  ngOnChanges(changes: SimpleChanges) {\r\n    if (changes['metaData']) {\r\n      this.listFields = this.getFields();\r\n    }\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -8764,12 +8773,12 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 34
+                "line": 35
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div fxLayout=\"column\">\r\n  <ng-content></ng-content>\r\n  <table\r\n    mat-table\r\n    [dataSource]=\"data\"\r\n    multiTemplateDataRows\r\n    matSort\r\n    (matSortChange)=\"changeSort($event)\"\r\n  >\r\n    <ng-container [matColumnDef]=\"meta.field\" *ngFor=\"let meta of metaData\">\r\n      <th mat-header-cell *matHeaderCellDef [mat-sort-header]=\"meta.field\">\r\n        {{ meta.header }}\r\n      </th>\r\n      <td mat-cell *matCellDef=\"let row\">\r\n        {{ row[meta.field] }}\r\n      </td>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"details\">\r\n      <td mat-cell *matCellDef=\"let row\" colSpan=\"{{ metaData.length }}\">\r\n        <div fxLayout class=\"headerSubRow\">\r\n          <strong *ngFor=\"let el of subMetaData\" [fxFlex]=\"widthColumns\">\r\n            {{ el.header }}\r\n          </strong>\r\n        </div>\r\n        <div fxLayout class=\"subRow\">\r\n          <div *ngFor=\"let el of subMetaData\" [fxFlex]=\"widthColumns\">\r\n            {{ row[el.field] }}\r\n          </div>\r\n        </div>\r\n      </td>\r\n    </ng-container>\r\n\r\n    <tr mat-header-row *matHeaderRowDef=\"listFields; sticky: true\"></tr>\r\n    <tr\r\n      mat-row\r\n      *matRowDef=\"let row; columns: listFields\"\r\n      [ngClass]=\"{ headerMain: getAdditionalFields().length > 0 }\"\r\n      class=\"highlightTitle\"\r\n    ></tr>\r\n    <tr\r\n      mat-row\r\n      *matRowDef=\"let row; columns: getAdditionalFields()\"\r\n      [ngStyle]=\"{\r\n        display: getAdditionalFields().length > 0 ? 'table-row' : 'none'\r\n      }\"\r\n      class=\"highlight\"\r\n    ></tr>\r\n  </table>\r\n</div>\r\n"
+            "templateData": "<div fxLayout=\"column\">\r\n  <ng-content></ng-content>\r\n  <table\r\n    mat-table\r\n    [dataSource]=\"data\"\r\n    multiTemplateDataRows\r\n    matSort\r\n    (matSortChange)=\"changeSort($event)\"\r\n  >\r\n    <ng-container [matColumnDef]=\"meta.field\" *ngFor=\"let meta of metaData\">\r\n      <th mat-header-cell *matHeaderCellDef [mat-sort-header]=\"meta.field\">\r\n        {{ meta.header }}\r\n      </th>\r\n      <td mat-cell *matCellDef=\"let row\">\r\n        {{ row[meta.field] }}\r\n      </td>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"details\">\r\n      <td mat-cell *matCellDef=\"let row\" colSpan=\"{{ metaData.length }}\">\r\n        <div fxLayout class=\"headerSubRow\">\r\n          <strong *ngFor=\"let el of subMetaData\" [fxFlex]=\"widthColumns\">\r\n            {{ el.header }}\r\n          </strong>\r\n        </div>\r\n        <div fxLayout class=\"subRow\">\r\n          <div *ngFor=\"let el of subMetaData\" [fxFlex]=\"widthColumns\">\r\n            {{ row[el.field] }}\r\n          </div>\r\n        </div>\r\n      </td>\r\n    </ng-container>\r\n\r\n    <tr mat-header-row *matHeaderRowDef=\"listFields; sticky: true\"></tr>\r\n    <tr\r\n      mat-row\r\n      *matRowDef=\"let row; columns: listFields\"\r\n      [ngClass]=\"{ headerMain: getAdditionalFields().length > 0 }\"\r\n      class=\"highlightTitle\"\r\n    ></tr>\r\n    <tr\r\n      mat-row\r\n      *matRowDef=\"let row; columns: getAdditionalFields()\"\r\n      [ngStyle]=\"{\r\n        display: getAdditionalFields().length > 0 ? 'table-row' : 'none'\r\n      }\"\r\n      class=\"highlight\"\r\n      [ngStyle]=\"{ 'background-color': selectedColor }\"\r\n    ></tr>\r\n  </table>\r\n</div>\r\n"
         },
         {
             "name": "TestComponent",
@@ -9782,6 +9791,16 @@
                 "defaultValue": "{\r\n  suppressScrollX: false,\r\n}"
             },
             {
+                "name": "Drivers",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/Table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -9795,21 +9814,21 @@
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/backoffice/src/environments/environment.prod.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\r\n  production: true,\r\n  apiUrl: 'https://api-cursoangular.cursos-dev.com',\r\n  pageSize: 30,\r\n  apiCovid: 'https://covid19.mathdro.id/api/confirmed',\r\n  apiSocket: 'https://p7inv.sse.codesandbox.io/',\r\n}"
-            },
-            {
-                "name": "environment",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/backoffice/src/environments/environment.uat.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\r\n  production: false,\r\n  apiUrl: 'https://api-cursoangular.cursos-dev.com',\r\n  pageSize: 30,\r\n  apiCovid: 'https://covid19.mathdro.id/api/confirmed',\r\n  apiSocket: 'https://p7inv.sse.codesandbox.io/',\r\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/backoffice/src/environments/environment.prod.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  production: true,\r\n  apiUrl: 'https://api-cursoangular.cursos-dev.com',\r\n  pageSize: 30,\r\n  apiCovid: 'https://covid19.mathdro.id/api/confirmed',\r\n  apiSocket: 'https://p7inv.sse.codesandbox.io/',\r\n}"
             },
             {
                 "name": "INACTIVITY_CONSTANTS",
@@ -9942,6 +9961,16 @@
                 "defaultValue": "[{ provide: MatPaginatorIntl, useClass: Paginator }]"
             },
             {
+                "name": "Medics",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/Table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "modules",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -10033,16 +10062,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/Button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<Button>",
-                "defaultValue": "(args: Button) => ({\n  props: args,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "stories/Header.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -10058,6 +10077,26 @@
                 "deprecationMessage": "",
                 "type": "Story<Page>",
                 "defaultValue": "(args: Page) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/Table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<TableComponent>",
+                "defaultValue": "(args: TableComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<Button>",
+                "defaultValue": "(args: Button) => ({\n  props: args,\n})"
             }
         ],
         "functions": [],
@@ -10279,6 +10318,38 @@
                     "defaultValue": "{\r\n  suppressScrollX: false,\r\n}"
                 }
             ],
+            "stories/Table.stories.ts": [
+                {
+                    "name": "Drivers",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/Table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Medics",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/Table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/Table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<TableComponent>",
+                    "defaultValue": "(args: TableComponent) => ({\r\n  props: args,\r\n})"
+                }
+            ],
             "projects/backoffice/src/environments/environment.ts": [
                 {
                     "name": "environment",
@@ -10291,18 +10362,6 @@
                     "defaultValue": "{\r\n  production: false,\r\n  apiUrl: 'https://api-cursoangular.cursos-dev.com',\r\n  pageSize: 6,\r\n  apiCovid: \"/api/confirmed\",\r\n  apiSocket: \"https://p7inv.sse.codesandbox.io/\"\r\n}"
                 }
             ],
-            "projects/backoffice/src/environments/environment.prod.ts": [
-                {
-                    "name": "environment",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/backoffice/src/environments/environment.prod.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{\r\n  production: true,\r\n  apiUrl: 'https://api-cursoangular.cursos-dev.com',\r\n  pageSize: 30,\r\n  apiCovid: 'https://covid19.mathdro.id/api/confirmed',\r\n  apiSocket: 'https://p7inv.sse.codesandbox.io/',\r\n}"
-                }
-            ],
             "projects/backoffice/src/environments/environment.uat.ts": [
                 {
                     "name": "environment",
@@ -10313,6 +10372,18 @@
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\r\n  production: false,\r\n  apiUrl: 'https://api-cursoangular.cursos-dev.com',\r\n  pageSize: 30,\r\n  apiCovid: 'https://covid19.mathdro.id/api/confirmed',\r\n  apiSocket: 'https://p7inv.sse.codesandbox.io/',\r\n}"
+                }
+            ],
+            "projects/backoffice/src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/backoffice/src/environments/environment.prod.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  production: true,\r\n  apiUrl: 'https://api-cursoangular.cursos-dev.com',\r\n  pageSize: 30,\r\n  apiCovid: 'https://covid19.mathdro.id/api/confirmed',\r\n  apiSocket: 'https://p7inv.sse.codesandbox.io/',\r\n}"
                 }
             ],
             "projects/backoffice/src/app/config/constants/inactivity.constant.ts": [
@@ -11471,7 +11542,7 @@
                 "linktype": "component",
                 "name": "TableComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/16",
+                "coverageCount": "0/17",
                 "status": "low"
             },
             {
@@ -11717,6 +11788,36 @@
             },
             {
                 "filePath": "stories/Page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/Table.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Drivers",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/Table.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Medics",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/Table.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",

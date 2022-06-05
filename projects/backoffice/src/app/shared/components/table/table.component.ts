@@ -29,6 +29,7 @@ export class TableComponent implements OnInit {
   @ContentChildren(MatColumnDef, { descendants: true })
   columnsDef!: QueryList<MatColumnDef>;
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
+  @Input() selectedColor: string = '#000000';
 
   widthColumns = '';
   listFields: string[] = [];
